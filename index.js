@@ -1,7 +1,6 @@
 const { prompt } = require("inquirer");
 const logo = require("asciiart-logo");
-const db = require("./db");
-const { inherits } = require("util");
+const db = require("./");
 require("console.table");
 
 init();
@@ -9,11 +8,12 @@ init();
 //Display logo text, load main prompts
 function init() {
     const logoText = logo({ name: "Employee Manager" }).render();
-
+    
     console.log(logoText);
-
+    
     loadMainPrompts() ;
 }
+    init();
 
 function loadMainPrompts () {
     prompt([
@@ -84,7 +84,7 @@ function loadMainPrompts () {
     let choice = res.choice;
     switch (choice) {
         case "VIEW_EMPLOYEES":
-            viewEmployees ();
+            viewEmployees();
             break;
         case "VIEW_EMPLOYEES_BY_DEPARTMENT":
             viewEmployeesByDepartment();
@@ -92,7 +92,7 @@ function loadMainPrompts () {
         case "VIEW_EMPLOYEES_BY_MANAGER":
             viewEmployeesByManager();
             break;
-        case "ADD_EMPLLOYEE":
+        case "ADD_EMPLOYEE":
             addEmployee();
             break;
         case "REMOVE_EMPLOYEE":
@@ -203,6 +203,29 @@ function viewEmployeesByManager () {
               });
             }
 
+//Add an employee
+function addEmployee() {
+    db.findAllEmployees()
+        .then(([rows]) => {
+            let employees = rows;
+            const employeeChoices = employees.map(({ id, first_name, last_name }) =>({
+            name: '${first_name} ${last_name}' ,
+            value: id
+        }));
+    
+            prompt ([
+            {
+            type: "list",
+            name: "employeeId",
+            message: "Which employee do you want to add?",
+            choices: employeeChoices
+             }
+            ])
+             .then(res => db.addEmployee(res.employeeId))
+             .then(() =>console.log("Add employee to the database"))
+             .then(() => loadMainPrompts())
+        })
+    }
 //Delete an employee
 function removeEmployee() {
     db.findAllEmployees()
