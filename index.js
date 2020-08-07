@@ -83,6 +83,9 @@ function loadMainPrompts () {
     ]).then(res => {
     let choice = res.choice;
     switch (choice) {
+        case "FIND_ALL_EMPLOYEES":
+            findAllEmployees();
+            break;
         case "VIEW_EMPLOYEES":
             viewEmployees();
             break;
@@ -252,7 +255,7 @@ function removeEmployee() {
     
     //Update an employee's role
     function updateEmployeeRole() {
-        db.findAllEmployees()
+        db.findAllEmployees() 
             .then(([rows]) => {
                 let employees = rows;
                 const employeeChoices = employees.map(({ id, first_name, last_name }) =>({
