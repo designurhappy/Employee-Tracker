@@ -23,6 +23,10 @@ function loadMainPrompts () {
          message: "What would you like to do?",
          choices: [
              {
+                 name: "Find All Employees",
+                 value: "FIND_ALL_EMPLOYEES"
+             },
+            {
                  name: "View All Employees",
                  value: "VIEW_EMPLOYEES"
              },
@@ -64,11 +68,11 @@ function loadMainPrompts () {
             },
             {
                 name: "Add Deparment",
-                value: "ADD DEPARTMENT"
+                value: "ADD_DEPARTMENT"
             },
             {
                 name: "Remove Deparment",
-                value: "REMOVE DEPARTMENT"
+                value: "REMOVE_DEPARTMENT"
             },
             {
                 name: "View Total Utilized Budget By Department",
@@ -133,6 +137,17 @@ function loadMainPrompts () {
         }
     }
     )
+}
+
+
+//Find all employees
+function findAllEmployees() {
+    db.viewEmployees()
+    .then(([rows])) ; {
+        let employees = rows;
+        console.log("\n");
+        console.table(employees);
+    }
 }
 
 //View all employees
