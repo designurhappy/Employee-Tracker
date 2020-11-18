@@ -15,7 +15,7 @@ A command-line application to manage a company's employee database
 ## GitHub Respository
 https://github.com/designurhappy/Employee-Tracker
 
-![ScreenShot](./.JPG)
+![ScreenShot](./Employee-Tracker.JPG)
 
 
 ## Questions
