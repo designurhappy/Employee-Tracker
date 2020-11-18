@@ -3,9 +3,11 @@ const logo = require("asciiart-logo");
 const db = require("./db");
 const connection = require("./db/connection");
 require("console.table");
+const EventEmitter = require('events');
+const emitter = new EventEmitter()
+emitter.setMaxListeners(50)
 
 init();
-
 function init() {
     const logoText = logo({ name: "Employee Tracker" }).render();
 
@@ -135,7 +137,7 @@ function viewEmployees() {
             console.table(employees);
             loadMainPrompts();
         })
-    // .then(() => loadMainPrompts());
+    .then(() => loadMainPrompts());
 }
 
 function viewDepartments() {
@@ -145,8 +147,8 @@ function viewDepartments() {
             console.log("\n");
             console.table(departments);
             loadMainPrompts();
-        });
-    // .then(() => loadMainPrompts());
+        })
+    .then(() => loadMainPrompts());
 }
 
 function viewRoles() {
@@ -157,7 +159,7 @@ function viewRoles() {
             console.table(roles);
             loadMainPrompts();
         })
-    // .then(() => loadMainPrompts());
+    .then(() => loadMainPrompts());
 }
 
 // VIEW BY FUNCTIONS
@@ -315,11 +317,10 @@ function updateEmployeeManager() {
                 });
         })
     }
-    // ADD DEPT/ROLE/EE FUNCTIONS 
-
-    function addEmployee() {
-        prompt([{
-            name: "newEmployeeFirst",
+// ADD DEPT/ROLE/EE FUNCTIONS 
+function addEmployee() {
+    prompt([{
+         name: "newEmployeeFirst",
             type: "input",
             message: "Enter new employee's first name:",
             validate: (input) => {
@@ -487,7 +488,7 @@ function updateEmployeeManager() {
                 }
             );
 
-            init();
+            //init();
 
         });
     }
