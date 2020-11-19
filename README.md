@@ -11,7 +11,7 @@ A command-line application to manage a company's employee database
 * MySQL
 
 ## Demonstration video
-[Video](./Demonstration_Employee-Tracker.mp4)
+[Employee-Tracker Demonstration](./Demonstration_Employee-Tracker.mp4)
 
 
 ## GitHub Respository
