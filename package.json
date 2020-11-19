@@ -1,5 +1,5 @@
 {
-  "name": "static-site",
+  "name": "employee-tracker",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,7 +11,7 @@
   "dependencies": {
     "asciiart-logo": "^0.2.6",
     "console.table": "^0.10.0",
-    "inquirer": "^6.3.1",
+    "inquirer": "^6.5.2",
     "mysql2": "^2.2.5"
   }
 }
